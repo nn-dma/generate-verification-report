@@ -230,13 +230,13 @@ func GenerateVerificationReport(ctx context.Context) error {
 	log.Info().Msg("Rendering pull request links")
 	generator = generator.
 		WithExec([]string{"sh", "-c", "echo '================> " + color.Purple("Rendering pull request links'")}).
-		WithExec([]string{"sh", "-c", "sed -i 's|<var>PULL_REQUEST_LINK</var>|" + prUrl + "|g' output/report.html"})
+		WithExec([]string{"sh", "-c", "sed -i '' 's|<var>PULL_REQUEST_LINK</var>|" + prUrl + "|g' output/report.html"})
 	// ADO version
 	/*
 		echo "python3 ${{ parameters.get_pull_request_id_py_location }} -commit $COMMIT_HASH -accesstoken USE_ENV_VARIABLE -organization novonordiskit -project '$(System.TeamProject)' -repository $(Build.Repository.Name) -result pull_request_id"
 		prId=$(python3 ${{ parameters.get_pull_request_id_py_location }} -commit $COMMIT_HASH -accesstoken USE_ENV_VARIABLE -organization novonordiskit -project '$(System.TeamProject)' -repository $(Build.Repository.Name) -result pull_request_id)
 		echo $prId
-		sed -i "s|<var>PULL_REQUEST_LINK</var>|$(System.CollectionUri)$(System.TeamProject)/_git/$(Build.Repository.Name)/pullrequest/$prId|g" ${{ parameters.verification_report_template_location }}
+		sed -i '' "s|<var>PULL_REQUEST_LINK</var>|$(System.CollectionUri)$(System.TeamProject)/_git/$(Build.Repository.Name)/pullrequest/$prId|g" ${{ parameters.verification_report_template_location }}
 	*/
 	// #endregion
 
@@ -257,13 +257,13 @@ func GenerateVerificationReport(ctx context.Context) error {
 	log.Info().Msg("Rendering pull request merged timestamp")
 	generator = generator.
 		WithExec([]string{"sh", "-c", "echo '================> " + color.Purple("Rendering pull request merged timestamp'")}).
-		WithExec([]string{"sh", "-c", "sed -i 's|<var>TIMESTAMP_PIPELINE_START</var>|" + prMergedTimestamp + "|g' output/report.html"})
+		WithExec([]string{"sh", "-c", "sed -i '' 's|<var>TIMESTAMP_PIPELINE_START</var>|" + prMergedTimestamp + "|g' output/report.html"})
 	// ADO version
 	/*
 		echo "python3 ${{ parameters.get_pull_request_id_py_location }} -commit $COMMIT_HASH -accesstoken USE_ENV_VARIABLE -organization novonordiskit -project '$(System.TeamProject)' -repository $(Build.Repository.Name) -result pull_request_closed_timestamp"
 		prClosedTimestamp=$(python3 ${{ parameters.get_pull_request_id_py_location }} -commit $COMMIT_HASH -accesstoken USE_ENV_VARIABLE -organization novonordiskit -project '$(System.TeamProject)' -repository $(Build.Repository.Name) -result pull_request_closed_timestamp)
 		echo $prClosedTimestamp
-		sed -i "s|<var>TIMESTAMP_PIPELINE_START</var>|$prClosedTimestamp|g" ${{ parameters.verification_report_template_location }}
+		sed -i '' "s|<var>TIMESTAMP_PIPELINE_START</var>|$prClosedTimestamp|g" ${{ parameters.verification_report_template_location }}
 	*/
 	// #endregion
 
@@ -386,10 +386,10 @@ func GenerateVerificationReport(ctx context.Context) error {
 	log.Info().Msg("Rendering IT solution name")
 	generator = generator.
 		WithExec([]string{"sh", "-c", "echo '================> " + color.Purple("Rendering IT solution name'")}).
-		WithExec([]string{"sh", "-c", "sed -i 's|<var>IT_SOLUTION_NAME</var>|" + parameters.ItSolutionName + "|g' output/report.html"})
+		WithExec([]string{"sh", "-c", "sed -i '' 's|<var>IT_SOLUTION_NAME</var>|" + parameters.ItSolutionName + "|g' output/report.html"})
 	// ADO version
 	/*
-		sed -i 's|<var>IT_SOLUTION_NAME</var>|${{ parameters.it_solution_name }}|g' ${{ parameters.verification_report_template_location }}
+		sed -i '' 's|<var>IT_SOLUTION_NAME</var>|${{ parameters.it_solution_name }}|g' ${{ parameters.verification_report_template_location }}
 	*/
 	// #endregion
 
@@ -399,10 +399,10 @@ func GenerateVerificationReport(ctx context.Context) error {
 	log.Info().Msg("Rendering pipeline run ID")
 	generator = generator.
 		WithExec([]string{"sh", "-c", "echo '================> " + color.Purple("Rendering pipeline run ID'")}).
-		WithExec([]string{"sh", "-c", "sed -i 's|<var>PIPELINE_RUN_ID</var>|" + parameters.PipelineRunId + "|g' output/report.html"})
+		WithExec([]string{"sh", "-c", "sed -i '' 's|<var>PIPELINE_RUN_ID</var>|" + parameters.PipelineRunId + "|g' output/report.html"})
 	// ADO version
 	/*
-		sed -i 's|<var>PIPELINE_RUN_ID</var>|$(Build.BuildId)|g' ${{ parameters.verification_report_template_location }}
+		sed -i '' 's|<var>PIPELINE_RUN_ID</var>|$(Build.BuildId)|g' ${{ parameters.verification_report_template_location }}
 	*/
 	// #endregion
 
@@ -412,10 +412,10 @@ func GenerateVerificationReport(ctx context.Context) error {
 	log.Info().Msg("Rendering target environment name")
 	generator = generator.
 		WithExec([]string{"sh", "-c", "echo '================> " + color.Purple("Rendering target environment name'")}).
-		WithExec([]string{"sh", "-c", "sed -i 's|<var>ENVIRONMENT</var>|" + parameters.EnvironmentName + "|g' output/report.html"})
+		WithExec([]string{"sh", "-c", "sed -i '' 's|<var>ENVIRONMENT</var>|" + parameters.EnvironmentName + "|g' output/report.html"})
 	// ADO version
 	/*
-		sed -i 's|<var>ENVIRONMENT</var>|${{ parameters.environment_name }}|g' ${{ parameters.verification_report_template_location }}
+		sed -i '' 's|<var>ENVIRONMENT</var>|${{ parameters.environment_name }}|g' ${{ parameters.verification_report_template_location }}
 	*/
 	// #endregion
 
@@ -426,10 +426,10 @@ func GenerateVerificationReport(ctx context.Context) error {
 	log.Info().Msg("Rendering GitHub project name")
 	generator = generator.
 		WithExec([]string{"sh", "-c", "echo '================> " + color.Purple("Rendering GitHub project name'")}).
-		WithExec([]string{"sh", "-c", "sed -i 's|<var>ADO_PROJECT_NAME</var>|" + parameters.ProjectName + "|g' output/report.html"})
+		WithExec([]string{"sh", "-c", "sed -i '' 's|<var>ADO_PROJECT_NAME</var>|" + parameters.ProjectName + "|g' output/report.html"})
 	// ADO version
 	/*
-		sed -i 's|<var>ADO_PROJECT_NAME</var>|$(System.TeamProject)|g' ${{ parameters.verification_report_template_location }}
+		sed -i '' 's|<var>ADO_PROJECT_NAME</var>|$(System.TeamProject)|g' ${{ parameters.verification_report_template_location }}
 	*/
 	// #endregion
 
@@ -439,10 +439,10 @@ func GenerateVerificationReport(ctx context.Context) error {
 	log.Info().Msg("Rendering 'ready for' (production/use) value")
 	generator = generator.
 		WithExec([]string{"sh", "-c", "echo '================> " + color.Purple("Rendering 'ready for' (production/use) value'")}).
-		WithExec([]string{"sh", "-c", "sed -i 's|<var>IS_READY_FOR</var>|" + parameters.ReadyFor + "|g' output/report.html"})
+		WithExec([]string{"sh", "-c", "sed -i '' 's|<var>IS_READY_FOR</var>|" + parameters.ReadyFor + "|g' output/report.html"})
 	// ADO version
 	/*
-		sed -i 's|<var>IS_READY_FOR</var>|${{ parameters.ready_for }}|g' ${{ parameters.verification_report_template_location }}
+		sed -i '' 's|<var>IS_READY_FOR</var>|${{ parameters.ready_for }}|g' ${{ parameters.verification_report_template_location }}
 	*/
 	// #endregion
 
@@ -462,10 +462,10 @@ func GenerateVerificationReport(ctx context.Context) error {
 
 	generator = generator.
 		WithExec([]string{"sh", "-c", "echo '================> " + color.Purple("Rendering pipeline run link'")}).
-		WithExec([]string{"sh", "-c", "sed -i 's|<var>ADO_PIPELINE_RUN_LINK</var>|" + pipelineRunLink + "|g' output/report.html"})
+		WithExec([]string{"sh", "-c", "sed -i '' 's|<var>ADO_PIPELINE_RUN_LINK</var>|" + pipelineRunLink + "|g' output/report.html"})
 	// ADO version
 	/*
-		sed -i 's|<var>ADO_PIPELINE_RUN_LINK</var>|$(System.CollectionUri)$(System.TeamProject)/_build/results?buildId=$(Build.BuildId)\&view=results|g' ${{ parameters.verification_report_template_location }}
+		sed -i '' 's|<var>ADO_PIPELINE_RUN_LINK</var>|$(System.CollectionUri)$(System.TeamProject)/_build/results?buildId=$(Build.BuildId)\&view=results|g' ${{ parameters.verification_report_template_location }}
 	*/
 	// #endregion
 
@@ -476,10 +476,10 @@ func GenerateVerificationReport(ctx context.Context) error {
 	log.Info().Msg("Rendering pipeline run artifacts link")
 	generator = generator.
 		WithExec([]string{"sh", "-c", "echo '================> " + color.Purple("Rendering pipeline run artifacts link'")}).
-		WithExec([]string{"sh", "-c", "sed -i 's|<var>ARTIFACTS_ADO_PIPELINE_LINK</var>|" + pipelineRunLink + "|g' output/report.html"})
+		WithExec([]string{"sh", "-c", "sed -i '' 's|<var>ARTIFACTS_ADO_PIPELINE_LINK</var>|" + pipelineRunLink + "|g' output/report.html"})
 	// ADO version
 	/*
-		sed -i 's|<var>ARTIFACTS_ADO_PIPELINE_LINK</var>|$(System.CollectionUri)$(System.TeamProject)/_build/results?buildId=$(Build.BuildId)\&view=artifacts\&pathAsName=false\&type=publishedArtifacts|g' ${{ parameters.verification_report_template_location }}
+		sed -i '' 's|<var>ARTIFACTS_ADO_PIPELINE_LINK</var>|$(System.CollectionUri)$(System.TeamProject)/_build/results?buildId=$(Build.BuildId)\&view=artifacts\&pathAsName=false\&type=publishedArtifacts|g' ${{ parameters.verification_report_template_location }}
 	*/
 	// #endregion
 
