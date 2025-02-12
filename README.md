@@ -1,5 +1,8 @@
 [![Unit Tests](https://github.com/nn-dma/generate-verification-report/actions/workflows/run_unit_tests.yml/badge.svg?branch=main)](https://github.com/nn-dma/generate-verification-report/actions/workflows/run_unit_tests.yml) [![Integration Tests](https://github.com/nn-dma/generate-verification-report/actions/workflows/run_integration_tests.yml/badge.svg?branch=main)](https://github.com/nn-dma/generate-verification-report/actions/workflows/run_integration_tests.yml) [![GitHub Action Tests](https://github.com/nn-dma/generate-verification-report/actions/workflows/run_github_action_test.yml/badge.svg?branch=main)](https://github.com/nn-dma/generate-verification-report/actions/workflows/run_github_action_test.yml)
 
+> [!IMPORTANT]
+> This repository has moved to [here](https://github.com/NovoNordisk-OpenSource/generate-verification-report) and is being deprecated and will be disabled on `2025-07-01`. This version of the repository is part of the Release Candidate for the QMS v2.0 pipeline tool stack. To migrate, regenerate the pipeline with the latest version of the QMS CLI, which will update paths and dependencies.
+
 # Who is this for?
 Software developers who understand the QMS toolchain.
 
